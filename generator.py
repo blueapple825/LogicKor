@@ -14,7 +14,7 @@ parser.add_argument(
     help=" : Model to evaluate",
 )
 parser.add_argument("-ml", "--model_len", help=" : Maximum Model Length", default=4096, type=int)
-parser.add_argument("-s", "--stop", help=" : Stop tokens to add", default=None, type=str)
+parser.add_argument("-s", "--stop", help=" : Custom Stop Sequences", default=None, type=str)
 args = parser.parse_args()
 
 print(f"Args - {args}")
