@@ -12,9 +12,9 @@ parser.add_argument(
     "-m",
     "--model",
     help=" : Model to evaluate",
-    default="yanolja/EEVE-Korean-Instruct-2.8B-v1.0",
 )
 parser.add_argument("-ml", "--model_len", help=" : Maximum Model Length", default=4096, type=int)
+parser.add_argument("-s", "--stop", help=" : Stop tokens to add", default=None, type=str)
 args = parser.parse_args()
 
 print(f"Args - {args}")
@@ -32,6 +32,8 @@ llm = Llama(
 temperature = 0
 max_tokens = args.model_len
 stop = ["<|endoftext|>", "[INST]", "[/INST]", "<|im_end|>", "<|end|>", "<|eot_id|>", "<end_of_turn>", "<eos>"]
+if args.stop != None:
+    stop.extend(args.stop.split(","))
 
 df_questions = pd.read_json("questions.jsonl", orient="records", encoding="utf-8-sig", lines=True)
 
